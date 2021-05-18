@@ -1,4 +1,15 @@
 module.exports = {
+  presets: [
+    [
+      'next/babel',
+      {
+        'preset-react': {
+          runtime: 'automatic',
+          importSource: '@emotion/react',
+        },
+      },
+    ],
+  ],
   plugins: [
     [
       'import',
@@ -6,6 +17,7 @@ module.exports = {
         libraryName: 'antd',
         style: true,
       },
-    ]
+    ],
+    ['@emotion/babel-plugin'],
   ],
 };

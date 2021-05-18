@@ -23,5 +23,8 @@
   },
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
-  "prettier.configPath": ".prettierrc.json"
+  "prettier.configPath": ".prettierrc.json",
+  "css.validate": false,
+	"less.validate": false,
+	"scss.validate": false
 }
