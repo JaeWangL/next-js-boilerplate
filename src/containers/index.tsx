@@ -1,5 +1,6 @@
 import { notification } from 'antd';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
 import IsEqual from 'react-fast-compare';
 import {
@@ -15,8 +16,10 @@ import {
 } from './styles';
 
 function Home(): JSX.Element {
+  const { t } = useTranslation(['common']);
+
   useEffect(() => {
-    notification.info({ message: 'Next.JS', description: 'Hello World' });
+    notification.info({ message: t('common:helloWordTitle'), description: t('common:helloWorldDesc') });
   }, []);
 
   return (

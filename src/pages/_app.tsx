@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { appWithTranslation } from 'next-i18next';
 import createCache from '@emotion/cache';
 import { CacheProvider, Global, Theme, ThemeProvider } from '@emotion/react';
 import { globalStyles } from '../styles/globals';
@@ -37,4 +38,4 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
