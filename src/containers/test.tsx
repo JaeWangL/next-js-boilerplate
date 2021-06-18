@@ -16,13 +16,13 @@ import {
   Title,
 } from './styles';
 
-function Home(): JSX.Element {
+function Test(): JSX.Element {
   const { t } = useTranslation(['common']);
-  const { signIn } = useUserStore();
+  const { user } = useUserStore();
 
   useEffect(() => {
     notification.info({ message: t('common:helloWordTitle'), description: t('common:helloWorldDesc') });
-    signIn({ email: '', password: '' });
+    notification.info({ message: 'Info', description: JSON.stringify(user.currentUser) });
   }, []);
 
   return (
@@ -73,4 +73,4 @@ function Home(): JSX.Element {
   );
 }
 
-export default React.memo(Home, IsEqual);
+export default React.memo(Test, IsEqual);

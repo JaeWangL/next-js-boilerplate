@@ -3,7 +3,8 @@ import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
 import createCache from '@emotion/cache';
 import { CacheProvider, Global, Theme, ThemeProvider } from '@emotion/react';
-import { globalStyles } from '../styles/globals';
+import { wrapper } from '@/redux';
+import { globalStyles } from '@/styles/globals';
 
 const theme: Theme = {
   breakpoints: {
@@ -38,4 +39,4 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   );
 }
 
-export default appWithTranslation(MyApp);
+export default wrapper.withRedux(appWithTranslation(MyApp));
