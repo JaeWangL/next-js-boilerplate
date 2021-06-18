@@ -10,7 +10,8 @@
     "plugin:import/typescript",
     "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended",
-    "prettier"
+    "prettier",
+    "plugin:@next/next/recommended"
   ],
   "settings": {
     "import/resolver": {
