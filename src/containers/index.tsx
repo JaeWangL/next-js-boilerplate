@@ -1,7 +1,7 @@
 import { notification } from 'antd';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
-import React, { useEffect } from 'react';
+import React, { useCallback } from 'react';
 import IsEqual from 'react-fast-compare';
 import { useUserStore } from '@/hooks';
 import {
@@ -20,15 +20,15 @@ function Home(): JSX.Element {
   const { t } = useTranslation(['common']);
   const { signIn } = useUserStore();
 
-  useEffect(() => {
-    notification.info({ message: t('common:helloWordTitle'), description: t('common:helloWorldDesc') });
+  const onTitleClick = useCallback((): void => {
     signIn({ email: '', password: '' });
+    notification.info({ message: 'Info', description: 'Dispatch Work' });
   }, []);
 
   return (
     <MainContainer>
       <ContentContainer>
-        <Title>
+        <Title onClick={onTitleClick}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </Title>
         <Description>

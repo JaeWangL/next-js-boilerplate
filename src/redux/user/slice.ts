@@ -1,3 +1,4 @@
+import { HYDRATE } from 'next-redux-wrapper';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserDto } from '@/dtos';
 import { SignInFailedPayload, SignInRequestPayload, SignInSucceedPayload } from './payloads';
@@ -26,6 +27,14 @@ const slice = createSlice({
     signInFailed: (state, { payload }: PayloadAction<SignInFailedPayload>) => {
       state.isLoading = false;
       state.errorMsg = payload.errorMsg;
+    },
+  },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      return {
+        ...state,
+        ...action.payload.user,
+      };
     },
   },
 });
