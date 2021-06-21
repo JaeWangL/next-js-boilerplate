@@ -1,5 +1,6 @@
 import { notification } from 'antd';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import React, { useCallback } from 'react';
 import IsEqual from 'react-fast-compare';
@@ -17,12 +18,14 @@ import {
 } from './styles';
 
 function Home(): JSX.Element {
+  const router = useRouter();
   const { t } = useTranslation(['common']);
   const { signIn } = useUserStore();
 
   const onTitleClick = useCallback((): void => {
     signIn({ email: '', password: '' });
     notification.info({ message: 'Info', description: 'Dispatch Work' });
+    router.push('/test');
   }, []);
 
   return (
