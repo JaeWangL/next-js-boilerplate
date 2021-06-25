@@ -1,7 +1,7 @@
 import { UserDto } from '@/dtos';
 
 export type SignInFailedPayload = {
-  errorMsg: string;
+  error: Error;
 };
 
 export type SignInRequestPayload = {

@@ -6,7 +6,7 @@ import { SignInFailedPayload, SignInRequestPayload, SignInSucceedPayload } from 
 export type UserState = {
   isLoading: boolean;
   currentUser?: UserDto;
-  errorMsg?: string;
+  error?: Error;
 };
 
 const initialState: UserState = {
@@ -26,7 +26,7 @@ const slice = createSlice({
     },
     signInFailed: (state, { payload }: PayloadAction<SignInFailedPayload>) => {
       state.isLoading = false;
-      state.errorMsg = payload.errorMsg;
+      state.error = payload.error;
     },
   },
   extraReducers: {

@@ -4,3 +4,8 @@ export type UserDto = {
   userName: string;
   email: string;
 };
+
+export type SignInInput = {
+  email: string;
+  password: string;
+};

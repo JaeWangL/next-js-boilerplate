@@ -1,17 +1,22 @@
-import { ofType, Epic } from 'redux-observable';
-import { from } from 'rxjs';
-import { mergeMap, map } from 'rxjs/operators';
-import { ActionType } from 'typesafe-actions';
+import { Epic } from 'redux-observable';
+import { from, of } from 'rxjs';
+import { catchError, filter, mergeMap, map } from 'rxjs/operators';
+import { isActionOf, ActionType } from 'typesafe-actions';
 import { signInAsync } from '@/services';
 import { RootState } from '../rootReducers';
-import { signInRequest, signInSucceed, UserActionsWithPayload } from './slice';
+import { signInFailed, signInRequest, signInSucceed, UserActionsWithPayload } from './slice';
 
 export type UserAction = ActionType<UserActionsWithPayload>;
 
 const signIn: Epic<UserAction, UserAction, RootState> = (action$) =>
   action$.pipe(
-    ofType(signInRequest.type),
-    mergeMap(() => from(signInAsync('', '')).pipe(map((response) => signInSucceed({ user: response })))),
+    filter(isActionOf(signInRequest)),
+    mergeMap((action) =>
+      from(signInAsync({ email: action.payload.email, password: action.payload.password })).pipe(
+        map((response) => signInSucceed({ user: response })),
+        catchError((error) => of(signInFailed({ error }))),
+      ),
+    ),
   );
 
 export default [signIn];
