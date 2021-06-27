@@ -43,3 +43,4 @@ export const userName = slice.name;
 export const userReducer = slice.reducer;
 export const { signInFailed, signInRequest, signInSucceed } = slice.actions;
 export type UserActionsWithPayload = typeof signInFailed | typeof signInRequest | typeof signInSucceed;
+export type UserActions = ReturnType<UserActionsWithPayload>;

@@ -1,13 +1,12 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/rootReducers';
-import { UserAction } from '@/redux/user/epics';
 import { SignInRequestPayload } from '@/redux/user/payloads';
-import { signInRequest, UserState } from '@/redux/user/slice';
+import { signInRequest, UserActions, UserState } from '@/redux/user/slice';
 
 export interface UserStore {
   user: UserState;
-  signIn: (payload: SignInRequestPayload) => UserAction;
+  signIn: (payload: SignInRequestPayload) => UserActions;
 }
 
 export const useUserStore = (): UserStore => {
