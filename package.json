@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "buld:analyze": "ANALYZE=true yarn build",
+    "start": "node node_modules/next/dist/bin/next start -p 8080",
     "lint:eslint": "eslint . --ext .ts,.js,.tsx,.jsx",
     "lint:eslint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
     "prettify": "prettier --write **/*.{ts,tsx,js,jsx,md,json,yaml,yml}",
