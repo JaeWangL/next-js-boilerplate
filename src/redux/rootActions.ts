@@ -1,3 +1,4 @@
+import { SettingsActions } from './settings/slice';
 import { UserActions } from './user/slice';
 
-export type RootActions = UserActions;
+export type RootActions = SettingsActions | UserActions;
