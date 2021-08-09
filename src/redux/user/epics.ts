@@ -5,7 +5,7 @@ import { signInAsync } from '@/services';
 import { RootState } from '../rootReducers';
 import { signInFailed, signInRequest, signInSucceed, UserActions } from './slice';
 
-const signIn: Epic<UserActions, UserActions, RootState> = (action$) =>
+const signIn$: Epic<UserActions, UserActions, RootState> = (action$) =>
   action$.pipe(
     filter(signInRequest.match),
     mergeMap((action) =>
@@ -16,4 +16,4 @@ const signIn: Epic<UserActions, UserActions, RootState> = (action$) =>
     ),
   );
 
-export default [signIn];
+export default [signIn$];
