@@ -1,12 +1,11 @@
 import { Epic } from 'redux-observable';
-import { from, of, Observable } from 'rxjs';
+import { from, of } from 'rxjs';
 import { catchError, filter, mergeMap, map } from 'rxjs/operators';
 import { signInAsync } from '@/services';
+import { RootState } from '../rootReducers';
 import { signInFailed, signInRequest, signInSucceed, UserActions } from './slice';
 
-// MARK: `Epic` will be replaced with `Epic<UserActions, UserActions, RootState>`
-// But, in combineEpics inside `rootEpics`, Type-error is caused because each epics have different action types
-export const signIn$: Epic = (action$: Observable<UserActions>) =>
+export const signIn$: Epic<UserActions, UserActions, RootState> = (action$) =>
   action$.pipe(
     filter(signInRequest.match),
     mergeMap((action) =>

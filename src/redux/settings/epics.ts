@@ -1,9 +1,10 @@
 import { Epic } from 'redux-observable';
-import { fromEvent, of, Observable } from 'rxjs';
+import { fromEvent, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
+import { RootState } from '../rootReducers';
 import { setMobile, SettingsActions } from './slice';
 
-export const changeMobile$: Epic = (action$: Observable<SettingsActions>) =>
+export const changeMobile$: Epic<SettingsActions, SettingsActions, RootState> = (action$) =>
   of(typeof window === 'undefined').pipe(
     filter((undefinedWindow) => !undefinedWindow),
     switchMap(() => fromEvent(window, 'resize')),
