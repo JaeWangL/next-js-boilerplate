@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import createCache from '@emotion/cache';
 import { CacheProvider, Global } from '@emotion/react';
+import { PageLoading } from '@/components';
 import { wrapper } from '@/redux';
 import { globalStyles } from '@/styles/globals';
 import { pageviewLog } from '@/utils';
@@ -63,6 +64,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <meta httpEquiv="X-UA-Compatible" content="chrome=1" />
         <title>Next-JS-Boilerplate</title>
       </Head>
+      <PageLoading isRouteChanging={state.isRouteChanging} key={state.loadingKey} />
       <CacheProvider value={cache}>
         <Global styles={globalStyles} />
         <Component {...pageProps} />
