@@ -28,21 +28,20 @@ class MyDocument extends Document<ICustomDocumentProps> {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
             rel="stylesheet"
           />
-          {/* TODO: Support Google Analytics
-          <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_MEASUREMENT_ID}`} />
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`} />
           <script
             dangerouslySetInnerHTML={{
               __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.GA_MEASUREMENT_ID}', {
-                page_path: window.location.pathname,
-              });
-            `,
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.GOOGLE_ANALYTICS_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
             }}
           />
-          */}
         </Head>
         <body>
           <Main />

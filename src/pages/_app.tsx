@@ -1,24 +1,58 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import createCache from '@emotion/cache';
-import { CacheProvider, Global, Theme, ThemeProvider } from '@emotion/react';
+import { CacheProvider, Global } from '@emotion/react';
 import { wrapper } from '@/redux';
 import { globalStyles } from '@/styles/globals';
+import { pageviewLog } from '@/utils';
 
-const theme: Theme = {
-  breakpoints: {
-    xs: '0px',
-    sm: '576px',
-    md: '768px',
-    lg: '992px',
-    xl: '1200px',
-  },
+interface IMyAppStates {
+  isRouteChanging: boolean;
+  loadingKey: number;
+}
+
+const initMyAppStates: IMyAppStates = {
+  isRouteChanging: false,
+  loadingKey: 0,
 };
 
 const cache = createCache({ key: 'wang' });
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+  const router = useRouter();
+  const [state, setState] = useState<IMyAppStates>(initMyAppStates);
+
+  useEffect(() => {
+    const handleRouteChangeStart = (): void => {
+      setState((prevState) => ({
+        ...prevState,
+        isRouteChanging: true,
+        loadingKey: prevState.loadingKey + 1,
+      }));
+    };
+
+    const handleRouteChangeEnd = (url: string): void => {
+      setState((prevState) => ({
+        ...prevState,
+        isRouteChanging: false,
+      }));
+      pageviewLog(url);
+    };
+
+    router.events.on('routeChangeStart', handleRouteChangeStart);
+    router.events.on('routeChangeComplete', handleRouteChangeEnd);
+    router.events.on('routeChangeError', handleRouteChangeEnd);
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart);
+      router.events.off('routeChangeComplete', handleRouteChangeEnd);
+      router.events.off('routeChangeError', handleRouteChangeEnd);
+    };
+  }, [router.events]);
+
   return (
     <>
       <Head>
@@ -30,10 +64,8 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <title>Next-JS-Boilerplate</title>
       </Head>
       <CacheProvider value={cache}>
-        <ThemeProvider theme={theme}>
-          <Global styles={globalStyles} />
-          <Component {...pageProps} />
-        </ThemeProvider>
+        <Global styles={globalStyles} />
+        <Component {...pageProps} />
       </CacheProvider>
     </>
   );
