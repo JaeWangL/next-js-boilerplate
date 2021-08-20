@@ -9,12 +9,8 @@ export function useWebSocket(): WebSocket | undefined {
     wsRef.current.onopen = () => {
       wsRef.current?.send(messageUserJoin(''));
     };
-    wsRef.current.onmessage = ({ data }) => {
-      console.log(data);
-    };
-    wsRef.current.onerror = (e) => {
-      console.log(e);
-    };
+    wsRef.current.onmessage = ({ data }) => {};
+    wsRef.current.onerror = (e) => {};
 
     return () => {
       wsRef.current!.close();
