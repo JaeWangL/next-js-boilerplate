@@ -1,4 +1,4 @@
-import { AppProps } from 'next/app';
+import { AppProps, NextWebVitalsMetric } from 'next/app';
 import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
@@ -71,6 +71,19 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       </CacheProvider>
     </>
   );
+}
+
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  const { id, name, label, value } = metric;
+
+  // @ts-ignore
+  window.gtag('event', name, {
+    event_category:
+      label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
+    value: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
+    event_label: id, // id unique to current page load
+    non_interaction: true, // avoids affecting bounce rate.
+  })
 }
 
 export default wrapper.withRedux(appWithTranslation(MyApp));
