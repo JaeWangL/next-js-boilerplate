@@ -13,4 +13,5 @@ sitemap({
 module.exports = withBundleAnalyzer({
   i18n,
   webpack5: true,
+  swcMinify: false,
 });

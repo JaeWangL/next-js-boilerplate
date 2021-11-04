@@ -13,7 +13,10 @@ export default class MyDocument extends Document {
           {/* PWA primary color */}
           <meta name="theme-color" content={defaultTheme.palette.primary.main} />
           <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+          {/* NOTE: Uncomment this if you want to use PWA }
           <link rel="manifest" href="/manifest.json" />
+          <link rel="apple-touch-icon" href="/logo-96x96.png" />
+          */}
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
           <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"

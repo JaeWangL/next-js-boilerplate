@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { memo, useCallback } from 'react';
 import IsEqual from 'react-fast-compare';
 import { toast } from 'react-toastify';
-import { useWebSocket, useUserStore } from '@/hooks';
+import { useUserStore } from '@/hooks';
 import {
   CardContainer,
   Code,
@@ -21,7 +21,6 @@ function Home(): JSX.Element {
   const router = useRouter();
   const { t } = useTranslation(['common']);
   const { signIn } = useUserStore();
-  const ws = useWebSocket();
 
   const onTitleClick = useCallback((): void => {
     signIn({ email: '', password: '' });
