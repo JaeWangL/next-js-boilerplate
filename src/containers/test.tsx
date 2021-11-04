@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
-import React, { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import IsEqual from 'react-fast-compare';
 import { toast } from 'react-toastify';
 import { useUserStore } from '@/hooks';
@@ -73,4 +73,4 @@ function Test(): JSX.Element {
   );
 }
 
-export default React.memo(Test, IsEqual);
+export default memo(Test, IsEqual);

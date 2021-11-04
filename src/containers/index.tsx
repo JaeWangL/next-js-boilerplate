@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import React, { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import IsEqual from 'react-fast-compare';
 import { toast } from 'react-toastify';
 import { useWebSocket, useUserStore } from '@/hooks';
@@ -77,4 +77,4 @@ function Home(): JSX.Element {
   );
 }
 
-export default React.memo(Home, IsEqual);
+export default memo(Home, IsEqual);

@@ -12,6 +12,7 @@ const HomePage: NextPage = () => {
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function getStaticProps({ locale }) {
   return {
     props: {

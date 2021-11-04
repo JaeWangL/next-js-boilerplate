@@ -3,11 +3,11 @@ import React from 'react';
 import IsEqual from 'react-fast-compare';
 import { LoadingWrapper, ProgressBar, Spinner } from './styles';
 
-interface IPageLoadingProps {
+type PageLoadingProps = {
   isRouteChanging: boolean;
-}
+};
 
-function PageLoading(props: IPageLoadingProps): JSX.Element {
+function PageLoading(props: PageLoadingProps): JSX.Element {
   const { isRouteChanging } = props;
   const { animationDuration, isFinished, progress } = useNProgress({
     isAnimating: isRouteChanging,

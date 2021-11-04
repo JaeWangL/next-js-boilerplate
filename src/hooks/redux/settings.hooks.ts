@@ -6,10 +6,10 @@ export interface SettingsStore {
   settings: SettingsState;
 }
 
-export const useSettingsStore = (): SettingsStore => {
+export function useSettingsStore(): SettingsStore {
   const settings = useSelector((state: RootState) => state.settings);
 
   return {
     settings,
   };
-};
+}
