@@ -3,7 +3,10 @@ import { useTranslation } from 'next-i18next';
 import { memo, useEffect } from 'react';
 import IsEqual from 'react-fast-compare';
 import { toast } from 'react-toastify';
+import useWebSocket from 'react-use-websocket';
 import { useUserStore } from '@/hooks';
+import { coinList, marketList } from '@/configs';
+import { wsPricesUrl, wsTradesUrl } from '@/services';
 import {
   CardContainer,
   Code,
@@ -19,6 +22,15 @@ import {
 function Test(): JSX.Element {
   const { t } = useTranslation(['common']);
   const { user } = useUserStore();
+  /*
+  const { readyState } = useWebSocket(wsTradesUrl([marketList.Binance]), {
+    onMessage: ({ data }) => console.log(data),
+  });
+  */
+  const { readyState } = useWebSocket(wsPricesUrl([coinList.Bitcoin, coinList.Ethereum]), {
+    fromSocketIO: false,
+    onMessage: ({ data }) => console.log(data),
+  });
 
   useEffect(() => {
     toast.info(t('common:helloWorldDesc'));
