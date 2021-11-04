@@ -1,8 +1,8 @@
-import { notification } from 'antd';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
 import IsEqual from 'react-fast-compare';
+import { toast } from 'react-toastify';
 import { useUserStore } from '@/hooks';
 import {
   CardContainer,
@@ -21,8 +21,8 @@ function Test(): JSX.Element {
   const { user } = useUserStore();
 
   useEffect(() => {
-    notification.info({ message: t('common:helloWordTitle'), description: t('common:helloWorldDesc') });
-    notification.info({ message: 'Info', description: JSON.stringify(user.currentUser) });
+    toast.info(t('common:helloWorldDesc'));
+    toast.info(JSON.stringify(user.currentUser));
   }, []);
 
   return (

@@ -1,9 +1,9 @@
-import { notification } from 'antd';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import React, { useCallback } from 'react';
 import IsEqual from 'react-fast-compare';
+import { toast } from 'react-toastify';
 import { useWebSocket, useUserStore } from '@/hooks';
 import {
   CardContainer,
@@ -25,7 +25,7 @@ function Home(): JSX.Element {
 
   const onTitleClick = useCallback((): void => {
     signIn({ email: '', password: '' });
-    notification.info({ message: 'Info', description: 'Dispatch Work' });
+    toast.info('Dispatch Work');
     router.push('/test');
   }, []);
 
