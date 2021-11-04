@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import React from 'react';
+import { memo } from 'react';
 import IsEqual from 'react-fast-compare';
 import Autocomplete from '@mui/material/Autocomplete';
 import Container from '@mui/material/Container';
@@ -37,4 +37,4 @@ function MaterialUI(): JSX.Element {
   );
 }
 
-export default React.memo(MaterialUI, IsEqual);
+export default memo(MaterialUI, IsEqual);

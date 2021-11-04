@@ -1,20 +1,20 @@
 import styled from '@emotion/styled';
 
-interface ILoadingWrapperProps {
+type LoadingWrapperProps = {
   isFinished: boolean;
   animationDuration: number;
-}
-export const LoadingWrapper = styled.div<ILoadingWrapperProps>`
+};
+export const LoadingWrapper = styled.div<LoadingWrapperProps>`
   opacity: ${(props) => (props.isFinished ? 0 : 1)};
   pointer-events: none;
   transition: opacity ${(props) => props.animationDuration}ms linear;
 `;
 
-interface IProgressBarProps {
+type ProgressBarProps = {
   progress: number;
   animationDuration: number;
-}
-export const ProgressBar = styled.div<IProgressBarProps>`
+};
+export const ProgressBar = styled.div<ProgressBarProps>`
   background: #29d;
   height: 2px;
   left: 0;

@@ -9,7 +9,7 @@ export interface UserStore {
   signIn: (payload: SignInRequestPayload) => UserActions;
 }
 
-export const useUserStore = (): UserStore => {
+export function useUserStore(): UserStore {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user);
 
@@ -19,4 +19,4 @@ export const useUserStore = (): UserStore => {
     user,
     signIn: signInDispatch,
   };
-};
+}
