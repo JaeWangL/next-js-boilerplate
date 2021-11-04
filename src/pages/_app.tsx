@@ -4,13 +4,19 @@ import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
-import createCache from '@emotion/cache';
-import { CacheProvider, Global } from '@emotion/react';
+import { CacheProvider, EmotionCache, Global } from '@emotion/react';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import { PageLoading } from '@/components';
 import { wrapper } from '@/redux';
-import { globalStyles } from '@/styles/globals';
-import { pageviewLog } from '@/utils';
+import { defaultTheme, globalStyles } from '@/styles';
+import { createEmotionCache, pageviewLog } from '@/utils';
 import 'react-toastify/dist/ReactToastify.css';
+
+interface IMyAppProps extends AppProps {
+  // eslint-disable-next-line react/require-default-props
+  emotionCache?: EmotionCache;
+}
 
 interface IMyAppStates {
   isRouteChanging: boolean;
@@ -22,9 +28,8 @@ const initMyAppStates: IMyAppStates = {
   loadingKey: 0,
 };
 
-const cache = createCache({ key: 'wang' });
-
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+function MyApp(props: IMyAppProps): JSX.Element {
+  const { Component, emotionCache = createEmotionCache(), pageProps } = props;
   const router = useRouter();
   const [state, setState] = useState<IMyAppStates>(initMyAppStates);
 
@@ -57,7 +62,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   }, [router.events]);
 
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -67,8 +72,10 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <title>Next-JS-Boilerplate</title>
       </Head>
       <PageLoading isRouteChanging={state.isRouteChanging} key={state.loadingKey} />
-      <CacheProvider value={cache}>
+      <ThemeProvider theme={defaultTheme}>
         <Global styles={globalStyles} />
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
         <Component {...pageProps} />
         <ToastContainer
           position="top-right"
@@ -79,12 +86,12 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           closeOnClick
           pauseOnHover={false}
         />
-      </CacheProvider>
-    </>
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 
-export function reportWebVitals(metric: NextWebVitalsMetric) {
+export function reportWebVitals(metric: NextWebVitalsMetric): void {
   const { id, name, label, value } = metric;
 
   // @ts-ignore
