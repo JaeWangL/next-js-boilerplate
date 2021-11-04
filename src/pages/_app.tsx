@@ -3,12 +3,14 @@ import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import createCache from '@emotion/cache';
 import { CacheProvider, Global } from '@emotion/react';
 import { PageLoading } from '@/components';
 import { wrapper } from '@/redux';
 import { globalStyles } from '@/styles/globals';
 import { pageviewLog } from '@/utils';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface IMyAppStates {
   isRouteChanging: boolean;
@@ -68,6 +70,15 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       <CacheProvider value={cache}>
         <Global styles={globalStyles} />
         <Component {...pageProps} />
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar
+          newestOnTop={false}
+          draggable={false}
+          closeOnClick
+          pauseOnHover={false}
+        />
       </CacheProvider>
     </>
   );
@@ -78,12 +89,11 @@ export function reportWebVitals(metric: NextWebVitalsMetric) {
 
   // @ts-ignore
   window.gtag('event', name, {
-    event_category:
-      label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
+    event_category: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
     value: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
     event_label: id, // id unique to current page load
     non_interaction: true, // avoids affecting bounce rate.
-  })
+  });
 }
 
 export default wrapper.withRedux(appWithTranslation(MyApp));

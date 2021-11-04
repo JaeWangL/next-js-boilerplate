@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const withAntdLess = require('next-plugin-antd-less');
 const sitemap = require('nextjs-sitemap-generator');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -11,14 +10,7 @@ sitemap({
   targetDirectory: `public/`,
 });
 
-module.exports = withBundleAnalyzer(
-  withAntdLess({
-    lessVarsFilePathAppendToEndOfContent: false,
-    cssLoaderOptions: {},
-    webpack(config) {
-      return config;
-    },
-    i18n,
-    webpack5: true,
-  }),
-);
+module.exports = withBundleAnalyzer({
+  i18n,
+  webpack5: true,
+});
