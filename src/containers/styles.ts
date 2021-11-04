@@ -1,5 +1,5 @@
-import { down } from 'styled-breakpoints';
 import styled from '@emotion/styled';
+import { breakPoints } from '@/styles';
 
 export const MainContainer = styled.div`
   align-items: center;
@@ -61,7 +61,7 @@ export const GridContainer = styled.div`
   margin-top: 3rem;
   max-width: 800px;
 
-  ${down('sm')} {
+  @media ${breakPoints.smDown} {
     .grid {
       flex-direction: column;
       width: 100%;
