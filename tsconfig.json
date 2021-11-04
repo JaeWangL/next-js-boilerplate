@@ -4,7 +4,11 @@
     "module": "esnext",
     "jsx": "preserve",
     "noEmit": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "strict": true,
     "allowJs": true,
     "esModuleInterop": true,
@@ -16,7 +20,6 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "baseUrl": ".",
-
     // Added by Emotion 11, necessary to use the "css" props using the "Babel preset", without using JSX pragma.
     // Using the Babel preset is better (DX), because we don't have to use "/** @jsx jsx */" in every file, as Babel does it for us.
     // See https://emotion.sh/docs/typescript#css-prop TS configuration to support the "css" prop
@@ -26,9 +29,20 @@
     // See https://github.com/UnlyEd/next-right-now/pull/247 Emotion v10 > v11 migration pull request
     "jsxImportSource": "@emotion/react",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", ".next", "dist"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "dist"
+  ]
 }
