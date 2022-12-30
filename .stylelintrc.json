@@ -1,15 +1,9 @@
 {
-  "plugins": ["stylelint-scss", "stylelint-order", "stylelint-prettier"],
-  "extends": ["stylelint-config-standard", "stylelint-config-sass-guidelines", "stylelint-config-prettier"],
+  "plugins": ["stylelint-prettier"],
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-concentric-order", "stylelint-prettier/recommended"],
   "rules": {
     "prettier/prettier": true,
-    "no-descending-specificity": null,
-    "max-nesting-depth": null,
-    "property-no-vendor-prefix": null,
-    "selector-class-pattern": null,
-    "selector-max-compound-selectors": null,
-    "selector-no-qualifying-type": null,
-    "value-keyword-case": null,
-    "value-no-vendor-prefix": null
+    "at-rule-no-unknown": null,
+    "selector-class-pattern": null
   }
 }

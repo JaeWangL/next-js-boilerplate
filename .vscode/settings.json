@@ -6,7 +6,8 @@
     "typescriptreact"
   ],
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": true,
+    "source.fixAll.stylelint": true
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -22,8 +23,13 @@
   },
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
-  "prettier.configPath": ".prettierrc.json",
   "css.validate": false,
-	"less.validate": false,
-	"scss.validate": false
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.validate": [
+    "css",
+    "scss",
+    ".module.scss"
+  ],
+  "stylelint.enable": true
 }
