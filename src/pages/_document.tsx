@@ -1,3 +1,8 @@
+/* eslint-disable no-param-reassign */
+import {
+  createDOMRenderer,
+  renderToStyleElements,
+} from '@fluentui/react-components';
 import type { DocumentContext, DocumentInitialProps } from 'next/document';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 
@@ -5,17 +10,43 @@ class MyDocument extends Document {
   static async getInitialProps(
     ctx: DocumentContext
   ): Promise<DocumentInitialProps> {
-    const initialProps = await Document.getInitialProps(ctx);
+    // Creates a renderer that will be used for SSR
+    const renderer = createDOMRenderer();
+    const originalRenderPage = ctx.renderPage;
 
-    return initialProps;
+    ctx.renderPage = (): DocumentInitialProps | Promise<DocumentInitialProps> =>
+      originalRenderPage({
+        enhanceApp: (App) =>
+          function EnhancedApp(props) {
+            const enhancedProps = {
+              ...props,
+              // This is required to provide a proper renderer instance
+              renderer,
+            };
+
+            return <App {...enhancedProps} />;
+          },
+      });
+
+    const initialProps = await Document.getInitialProps(ctx);
+    const styles = renderToStyleElements(renderer);
+
+    return {
+      ...initialProps,
+      styles: (
+        <>
+          {initialProps.styles}
+          {/* Adding Fluent UI styles elements to output */}
+          {styles}
+        </>
+      ),
+    };
   }
 
   render(): JSX.Element {
     return (
       <Html>
-        <Head>
-          <meta charSet="utf-8" />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />

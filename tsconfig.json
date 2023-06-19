@@ -39,7 +39,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@assets/*": ["./public/*"],
-      "@application/*": ["./src/application/*"],
+      "@data/*": ["./src/data/*"],
+      "@domain/*": ["./src/domain/*"],
       "@infrastructure/*": ["./src/infrastructure/*"],
       "@presentation/*": ["./src/presentation/*"]
     }

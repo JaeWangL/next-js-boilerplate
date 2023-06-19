@@ -1,18 +1,21 @@
-import '@application/styles/core.scss';
+import type { GriffelRenderer } from '@fluentui/react-components';
+import { FluentUIProvider } from '@presentation/providers/fluentUI';
 import type { AppProps } from 'next/app';
-import Head from 'next/head';
-import { RecoilRoot } from 'recoil';
+import { ToastProvider } from '../presentation/providers/toast';
 
-function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
+type EnhancedAppProps = AppProps & { renderer?: GriffelRenderer };
+
+function MyApp({
+  Component,
+  pageProps,
+  renderer = undefined,
+}: EnhancedAppProps): JSX.Element {
   return (
-    <>
-      <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <RecoilRoot>
-        <Component {...pageProps} key={router.asPath} />
-      </RecoilRoot>
-    </>
+    <ToastProvider>
+      <FluentUIProvider renderer={renderer}>
+        <Component {...pageProps} />
+      </FluentUIProvider>
+    </ToastProvider>
   );
 }
 

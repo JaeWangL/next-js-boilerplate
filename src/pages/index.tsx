@@ -1,8 +1,8 @@
+import { HomeView } from '@presentation/features/home';
 import type { NextPage } from 'next';
-import Home from '@presentation/features/home';
 
 const HomePage: NextPage = () => {
-  return  <Home />;
+  return <HomeView />;
 };
 
 export default HomePage;
