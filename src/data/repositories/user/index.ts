@@ -4,6 +4,7 @@ import type { UserInfoDTO } from '../../dtos/user';
 import { userApi } from '../constants';
 
 export async function getByUserId(userId: string): Promise<UserInfoDTO> {
+  console.log('Work3');
   const res = await axiosInstance.get<UserInfoDTO>(
     pathToUrl(userApi.getByUserId, {
       userId,

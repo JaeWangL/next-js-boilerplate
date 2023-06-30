@@ -1,4 +1,5 @@
 import { DialogProvider } from '@presentation/providers/dialog';
+import { EmotionProvider } from '@presentation/providers/emotion';
 import { ReactQueryProvider } from '@presentation/providers/reactQuery';
 import { StoreProvider } from '@presentation/providers/redux';
 import { ToastProvider } from '@presentation/providers/toast';
@@ -15,12 +16,16 @@ function RootLayout(props: RootLayoutProps): JSX.Element {
 
   return (
     <html lang="ko">
+      {/* It's important to keep a head tag, even if it's empty */}
+      <head />
       {/* TODO: Add font class in `body` */}
       <body>
         <ReactQueryProvider>
           <StoreProvider>
             <DialogProvider>
-              <ToastProvider>{children}</ToastProvider>
+              <ToastProvider>
+                <EmotionProvider>{children}</EmotionProvider>
+              </ToastProvider>
             </DialogProvider>
           </StoreProvider>
         </ReactQueryProvider>

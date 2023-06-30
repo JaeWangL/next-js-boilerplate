@@ -3,7 +3,7 @@
 import { useDialogDispatch } from '@application/hooks/store/dialog/dispatch';
 import { useCallback } from 'react';
 
-function Home(): JSX.Element {
+function HomePage(): JSX.Element {
   const { openDialog } = useDialogDispatch();
 
   const onTest = useCallback((): void => {
@@ -26,4 +26,4 @@ function Home(): JSX.Element {
   );
 }
 
-export default Home;
+export default HomePage;

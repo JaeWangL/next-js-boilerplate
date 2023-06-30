@@ -9,7 +9,7 @@ module.exports = withBundleAnalyzer({
     dirs: ['.'],
   },
   poweredByHeader: false,
-  trailingSlash: true,
+  trailingSlash: false,
   basePath: '',
   reactStrictMode: true,
   /*

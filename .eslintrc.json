@@ -11,7 +11,9 @@
     "@typescript-eslint",
     "unused-imports",
     "simple-import-sort",
-    "import"
+    "import",
+    "@tanstack/query",
+    "tss-unused-classes"
   ],
   "parserOptions": {
     "project": ["./tsconfig.json"]
@@ -67,6 +69,9 @@
         "varsIgnorePattern": "^_",
         "caughtErrorsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "@tanstack/query/exhaustive-deps": "error",
+    "@tanstack/query/prefer-query-object-syntax": "error",
+    "tss-unused-classes/unused-classes": "warn"
   }
 }
