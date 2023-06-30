@@ -20,7 +20,15 @@ export function DialogProvider(props: DialogProviderProps): JSX.Element {
     <>
       {children}
       <Modal open={dialog.isOpen} onClose={onCloseModal} center>
-        <h2>Simple centered modal</h2>
+        <h6>{dialog.data?.title}</h6>
+        <p>{dialog.data?.message}</p>
+        {dialog.data?.buttons.map((b) => {
+          return (
+            <button key={b.text} onClick={b.onClick}>
+              {b.text}
+            </button>
+          );
+        })}
       </Modal>
     </>
   );
