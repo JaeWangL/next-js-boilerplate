@@ -1,9 +1,0 @@
-{
-  "plugins": ["stylelint-prettier"],
-  "extends": ["stylelint-config-standard-scss", "stylelint-config-concentric-order", "stylelint-prettier/recommended"],
-  "rules": {
-    "prettier/prettier": true,
-    "at-rule-no-unknown": null,
-    "selector-class-pattern": null
-  }
-}
