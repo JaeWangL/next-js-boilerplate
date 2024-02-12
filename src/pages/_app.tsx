@@ -6,6 +6,8 @@ import { wrapper } from '@application/store';
 import { QueryProvider } from '@presentation/providers/query';
 import type { AppProps } from 'next/app';
 import localFont from 'next/font/local';
+import { useRouter } from 'next/router';
+import { NextIntlClientProvider } from 'next-intl';
 import { Provider } from 'react-redux';
 import { RecoilEnv, RecoilRoot } from 'recoil';
 
@@ -41,19 +43,37 @@ const myFont = localFont({
   ],
 });
 
-export default function App({ Component, ...rest }: Omit<AppProps, 'pageProps'>) {
+type PageProps = {
+  messages: IntlMessages;
+  now: number;
+};
+
+export default function App({
+  Component,
+  ...rest
+}: Omit<AppProps<PageProps>, 'pageProps'> & {
+  pageProps: PageProps;
+}) {
   // @ts-ignore
   const { store, props } = wrapper.useWrappedStore(rest);
+  const router = useRouter();
 
   return (
-    <QueryProvider>
-      <Provider store={store}>
-        <RecoilRoot>
-          <main className={myFont.className}>
-            <Component {...props.pageProps} />
-          </main>
-        </RecoilRoot>
-      </Provider>
-    </QueryProvider>
+    <NextIntlClientProvider
+      locale={router.locale ?? 'ko'}
+      timeZone="Asia/Seoul"
+      now={new Date(props.pageProps.now)}
+      messages={props.pageProps.messages}
+    >
+      <QueryProvider>
+        <Provider store={store}>
+          <RecoilRoot>
+            <main className={myFont.className}>
+              <Component {...props.pageProps} />
+            </main>
+          </RecoilRoot>
+        </Provider>
+      </QueryProvider>
+    </NextIntlClientProvider>
   );
 }

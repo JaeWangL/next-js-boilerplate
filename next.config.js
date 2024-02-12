@@ -18,6 +18,10 @@ const nextConfig = {
   images: {
     unoptimized: !isProd,
   },
+  i18n: {
+    locales: ['en', 'ko'],
+    defaultLocale: 'ko',
+  },
   webpack(config, { webpack: _webpack }) {
     config.resolve.alias = {
       ...config.resolve.alias,
