@@ -1,0 +1,138 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  // PRIMARY COLOR
+  --c-primary-100: #f2f6ff;
+  --c-primary-200: #d9e4ff;
+  --c-primary-300: #a6c1ff;
+  --c-primary-400: #598bff;
+  --c-primary-500: #36f;
+  --c-primary-600: #274bdb;
+  --c-primary-700: #1a34b8;
+  --c-primary-800: #102694;
+  --c-primary-900: #091c7a;
+  --c-transparent-primary-8: rgb(51 102 255 / 8%);
+  --c-transparent-primary-16: rgb(51 102 255 / 16%);
+  --c-transparent-primary-24: rgb(51 102 255 / 24%);
+  --c-transparent-primary-32: rgb(51 102 255 / 32%);
+  --c-transparent-primary-40: rgb(51 102 255 / 40%);
+  --c-transparent-primary-48: rgb(51 102 255 / 48%);
+
+  // BASIC COLOR
+  --c-basic-100: #fff;
+  --c-basic-200: #f7f9fc;
+  --c-basic-300: #edf1f7;
+  --c-basic-400: #e4e9f2;
+  --c-basic-500: #c5cee0;
+  --c-basic-600: #8f9bb3;
+  --c-basic-700: #2e3a59;
+  --c-basic-800: #222b45;
+  --c-basic-900: #192038;
+  --c-basic-1000: #151a30;
+  --c-basic-1100: #101426;
+  --c-transparent-basic-8: rgb(143 155 179 / 8%);
+  --c-transparent-basic-16: rgb(143 155 179 / 16%);
+  --c-transparent-basic-24: rgb(143 155 179 / 24%);
+  --c-transparent-basic-32: rgb(143 155 179 / 32%);
+  --c-transparent-basic-40: rgb(143 155 179 / 40%);
+  --c-transparent-basic-48: rgb(143 155 179 / 48%);
+
+  // SUCCESS COLOR
+  --c-success-100: #f0fff5;
+  --c-success-200: #ccfce3;
+  --c-success-300: #8cfac7;
+  --c-success-400: #2ce59b;
+  --c-success-500: #00d68f;
+  --c-success-600: #00b887;
+  --c-success-700: #00997a;
+  --c-success-800: #007d6c;
+  --c-success-900: #004a45;
+  --c-transparent-success-8: rgb(0 214 143 / 8%);
+  --c-transparent-success-16: rgb(0 214 143 / 16%);
+  --c-transparent-success-24: rgb(0 214 143 / 24%);
+  --c-transparent-success-32: rgb(0 214 143 / 32%);
+  --c-transparent-success-40: rgb(0 214 143 / 40%);
+  --c-transparent-success-48: rgb(0 214 143 / 48%);
+
+  // INFO COLOR
+  --c-info-100: #f2f8ff;
+  --c-info-200: #c7e2ff;
+  --c-info-300: #94cbff;
+  --c-info-400: #42aaff;
+  --c-info-500: #0095ff;
+  --c-info-600: #006fd6;
+  --c-info-700: #0057c2;
+  --c-info-800: #0041a8;
+  --c-info-900: #002885;
+  --c-transparent-info-8: rgb(0 149 255 / 8%);
+  --c-transparent-info-16: rgb(0 149 255 / 16%);
+  --c-transparent-info-24: rgb(0 149 255 / 24%);
+  --c-transparent-info-32: rgb(0 149 255 / 32%);
+  --c-transparent-info-40: rgb(0 149 255 / 40%);
+  --c-transparent-info-48: rgb(0 149 255 / 48%);
+
+  // WARNING COLOR
+  --c-warning-100: #fffdf2;
+  --c-warning-200: #fff1c2;
+  --c-warning-300: #ffe59e;
+  --c-warning-400: #ffc94d;
+  --c-warning-500: #fa0;
+  --c-warning-600: #db8b00;
+  --c-warning-700: #b86e00;
+  --c-warning-800: #945400;
+  --c-warning-900: #703c00;
+  --c-transparent-warning-8: rgb(255 170 0 / 8%);
+  --c-transparent-warning-16: rgb(255 170 0 / 16%);
+  --c-transparent-warning-24: rgb(255 170 0 / 24%);
+  --c-transparent-warning-32: rgb(255 170 0 / 32%);
+  --c-transparent-warning-40: rgb(255 170 0 / 40%);
+  --c-transparent-warning-48: rgb(255 170 0 / 48%);
+
+  // DANGER COLOR
+  --c-danger-100: #fff2f2;
+  --c-danger-200: #ffd6d9;
+  --c-danger-300: #ffa8b4;
+  --c-danger-400: #ff708d;
+  --c-danger-500: #ff3d71;
+  --c-danger-600: #db2c66;
+  --c-danger-700: #b81d5b;
+  --c-danger-800: #94124e;
+  --c-danger-900: #700940;
+  --c-transparent-danger-8: rgb(255 61 113 / 8%);
+  --c-transparent-danger-16: rgb(255 61 113 / 16%);
+  --c-transparent-danger-24: rgb(255 61 113 / 24%);
+  --c-transparent-danger-32: rgb(255 61 113 / 32%);
+  --c-transparent-danger-40: rgb(255 61 113 / 40%);
+  --c-transparent-danger-48: rgb(255 61 113 / 48%);
+}
+
+// Scss Variable
+$font-family-pretendard: 'Pretendard', sans-serif;
+
+// Font
+.font-pretendard {
+  font-family: $font-family-pretendard;
+  font-weight: 400;
+}
+
+.font-pretendard-medium {
+  font-family: $font-family-pretendard;
+  font-weight: 500;
+}
+
+.font-pretendard-semibold {
+  font-family: $font-family-pretendard;
+  font-weight: 600;
+}
+
+.font-pretendard-bold {
+  font-family: $font-family-pretendard;
+  font-weight: 700;
+}
+
+.font-pretendard-extrabold {
+  font-family: $font-family-pretendard;
+  font-weight: 800;
+}
