@@ -7,6 +7,7 @@ import { QueryProvider } from '@presentation/providers/query';
 import type { AppProps } from 'next/app';
 import localFont from 'next/font/local';
 import { useRouter } from 'next/router';
+import { SessionProvider } from 'next-auth/react';
 import { NextIntlClientProvider } from 'next-intl';
 import { Provider } from 'react-redux';
 import { RecoilEnv, RecoilRoot } from 'recoil';
@@ -65,15 +66,17 @@ export default function App({
       now={new Date(props.pageProps.now)}
       messages={props.pageProps.messages}
     >
-      <QueryProvider>
-        <Provider store={store}>
-          <RecoilRoot>
-            <main className={myFont.className}>
-              <Component {...props.pageProps} />
-            </main>
-          </RecoilRoot>
-        </Provider>
-      </QueryProvider>
+      <SessionProvider session={props.pageProps.session}>
+        <QueryProvider>
+          <Provider store={store}>
+            <RecoilRoot>
+              <main className={myFont.className}>
+                <Component {...props.pageProps} />
+              </main>
+            </RecoilRoot>
+          </Provider>
+        </QueryProvider>
+      </SessionProvider>
     </NextIntlClientProvider>
   );
 }
